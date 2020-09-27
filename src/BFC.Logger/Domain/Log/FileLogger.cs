@@ -8,7 +8,6 @@ namespace BFC.Logger.Domain.Log
 {
     internal class FileLogger : LogBase
     {
-        public string filePath = @"D:\IDGLog.txt";
         public override void Log(string message)
         {
             lock (lockObj)

@@ -9,7 +9,7 @@ namespace BFC.Logger
         private static LogBase logger = null;
         public static void Log(string message)
         {
-            switch (LoggerConfiguration.loggerTarget)
+            switch (LoggerConfiguration._loggerTarget)
             {
                 case LogTarget.File:
                     logger = new FileLogger();
