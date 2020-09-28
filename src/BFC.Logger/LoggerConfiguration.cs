@@ -21,11 +21,6 @@ namespace BFC.Logger
                 throw new LoggerException("Path to Log cannot be null or empty");
             }
 
-            if (!Directory.Exists(pathToLogs))
-            {
-                throw new LoggerException("Path to Log cannot be null or empty");
-            }
-
             _connection = pathToLogs;
             _loggerTarget = LogTarget.File;
 
