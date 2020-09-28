@@ -1,9 +1,8 @@
-name: .NET Core build & publish to nuget
+name: Build, Pack & Publish to Nuget
 
 on:
   push:
     branches: [ master ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,8 +21,19 @@ jobs:
       run: dotnet build ${{env.base-path}}${{env.solution-name}} --configuration Release --no-restore
     - name: Test
       run: dotnet test ${{env.base-path}}${{env.solution-name}} --no-restore --verbosity normal
-  buildnumber:
+  sonarQubeTrigger:
     needs: build
+    name: SonarQube Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@master
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONAR_TOKEN }}
+  buildnumber:
+    needs: sonarQubeTrigger
     runs-on: ubuntu-latest
     outputs:
       build_number: ${{ steps.buildnumber.outputs.build_number }}
