@@ -8,12 +8,11 @@ namespace BFC.Logger.Domain.Log
 {
     internal class FileLogger : LogBase
     {
-        public string filePath = @"D:\IDGLog.txt";
         public override void Log(string message)
         {
             lock (lockObj)
             {
-                using (StreamWriter streamWriter = new StreamWriter(filePath))
+                using (StreamWriter streamWriter = new StreamWriter(LoggerConfiguration._connection))
                 {
                     streamWriter.WriteLine(message);
                     streamWriter.Close();
