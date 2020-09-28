@@ -6,7 +6,6 @@ namespace BFC.Logger
 {
     public static class LoggerConfiguration
     {
-
         internal static LogTarget? _loggerTarget = null;
         internal static string _connection = null;
 
