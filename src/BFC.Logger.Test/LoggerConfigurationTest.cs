@@ -9,7 +9,7 @@ namespace BFC.Logger.Test
         [TestMethod]
         public void LoggerConfiguration_SetupCorrectly_Database_Test()
         {
-            var target = LoggerConfiguration.Setup(LogTarget.Database);
+            var target = LoggerConfiguration.Setup("connection_string", "Logger");
 
             Assert.AreEqual(target, LogTarget.Database);
         }
@@ -17,7 +17,7 @@ namespace BFC.Logger.Test
         [TestMethod]
         public void LoggerConfiguration_SetupCorrectly_File_Test()
         {
-            var target = LoggerConfiguration.Setup(LogTarget.File);
+            var target = LoggerConfiguration.Setup("path_to_file");
 
             Assert.AreEqual(target, LogTarget.File);
         }
@@ -25,7 +25,7 @@ namespace BFC.Logger.Test
         [TestMethod]
         public void LoggerConfiguration_SetupWithDifferentTargets_Test()
         {
-            var target = LoggerConfiguration.Setup(LogTarget.File);
+            var target = LoggerConfiguration.Setup("path");
 
             Assert.AreNotEqual(target, LogTarget.Database);
         }

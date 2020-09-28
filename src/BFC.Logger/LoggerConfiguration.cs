@@ -7,7 +7,7 @@ namespace BFC.Logger
     public static class LoggerConfiguration
     {
         internal static LogTarget? _loggerTarget = null;
-        internal static string _pathToLogs = null;
+        internal static string _connection = null;
 
         /// <summary>
         /// Setups a Logger for a file
@@ -26,8 +26,26 @@ namespace BFC.Logger
                 throw new LoggerException("Path to Log cannot be null or empty");
             }
 
-            _pathToLogs = pathToLogs;
+            _connection = pathToLogs;
             _loggerTarget = LogTarget.File;
+
+            return _loggerTarget.Value;
+        }
+
+        /// <summary>
+        /// Setups a Logger for a file
+        /// </summary>
+        /// <param name="pathToLogs">Path to log files</param>
+        /// <returns></returns>
+        public static LogTarget Setup(string connectionString, string schema)
+        {
+            if (string.IsNullOrEmpty(connectionString) || string.IsNullOrEmpty(schema))
+            {
+                throw new LoggerException("Path to Log cannot be null or empty");
+            }
+
+            _connection = connectionString;
+            _loggerTarget = LogTarget.Database;
 
             return _loggerTarget.Value;
         }

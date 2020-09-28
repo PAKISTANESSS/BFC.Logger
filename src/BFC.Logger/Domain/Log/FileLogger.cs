@@ -12,7 +12,7 @@ namespace BFC.Logger.Domain.Log
         {
             lock (lockObj)
             {
-                using (StreamWriter streamWriter = new StreamWriter(filePath))
+                using (StreamWriter streamWriter = new StreamWriter(LoggerConfiguration._connection))
                 {
                     streamWriter.WriteLine(message);
                     streamWriter.Close();
